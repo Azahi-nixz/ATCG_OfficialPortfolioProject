@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-color: rgb(0, 0, 0);
+}
+
+.Login {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin-right: 100px;
+}
+
+.box {
+    background: linear-gradient(
+    to bottom right, 
+    rgba(124, 58, 237, 0.4),
+    rgba(222, 84, 203, 0.8) 
+  );    
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    border-width: 4px;
+    border-color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    max-width: 350px;
+    border-style: solid;
+
+}
+
+.Log-in {
+    font-weight: bolder;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Cherry Bomb One", system-ui;
+}
+
+.Email,
+.Password{
+    margin-bottom: 5px;
+}
+
+.email,
+.password {
+    margin-left: 5px;
+    display: block;
+    font-size: small;
+    font-family: "Cherry Bomb One", system-ui; 
+    font-weight: lighter;
+
+}
+
+.em,
+.pw {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-radius: 10px;
+    background-color: antiquewhite;
+    border-color: black;
+    border-width: 1px;
+    transition: border-width 3s ease transform 3s ease;
+    font-family: "Chewy", system-ui;
+    font-size: small;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 300px;
+
+}
+
+.em:hover {
+    border-width: 3px;
+}
+
+.pw:hover {
+    border-width: 3px;
+}
+
+.ew:active {
+    border-width: 2px;
+}
+
+.pw:active {
+    border-width: 2px;
+}
+
+.Submit {
+    text-align: center;
+    margin-right: 100px;
+    background-color: black;
+    color: rgb(222, 84, 203);
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: large;
+    font-family: "Cherry Bomb One", system-ui;
+    border-radius: 20px;
+    width: 300px;
+    transition: border-radius 0.2s;
+    
+}
+
+.Submit:hover {
+    border-radius: 1px;
+}
+
+.Submit::after {
+    content: Submit;
+}
+
+.Submit:hover::after {
+    content: " »";
+}
+
+.Signup {
+    display: flex;
+    margin-top: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign {
+    text-align: center;
+    font-size: smaller;
+    font-family: "Chewy", system-ui;
+}
+
+.sp {
+    transition: text-decoration 0.2s;
+}
+
+.sp:hover {
+    text-decoration: underline;
+}
+
+.sp::after {
+    content: "";
+}
+
+.sp:hover::after {
+    content: " →";
+}
+
+.reset {
+    margin-top: 5px;
+}
+
+.rp {
+     text-align: center;
+    font-size: smaller;
+    font-family: "Cherry Bomb One", system-ui;
+    transition: text-decoration 0.2s;
+}
+
+.rp:hover {
+    text-decoration: underline;
+}
+
+.rp::after {
+    content: "";
+}
+
+.rp:hover::after {
+    content: " →";
+}
+
+.line {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
