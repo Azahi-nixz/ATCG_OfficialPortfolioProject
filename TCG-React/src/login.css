@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+.Login {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+    
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+  
+    transition: background-image 0.8s ease-in-out,
+    background-color 0.8s ease-in-out;
+}
+
+.box {
+    background: linear-gradient(
+        to bottom right, 
+        rgba(124, 58, 237, 0.4),
+        rgba(222, 84, 203, 0.8) 
+    );    
+    padding: 25px; 
+    border-radius: 10px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    max-width: 350px;
+    margin-right: 100px; 
+    backdrop-filter: blur(8px); 
+}
+
+.Log-in {
+    font-weight: bolder;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Cherry Bomb One", system-ui;
+}
+
+.Email, .Password {
+    margin-bottom: 12px;
+}
+
+.email, .password {
+    margin-left: 5px;
+    display: block;
+    font-size: small;
+    font-family: "Cherry Bomb One", system-ui; 
+    font-weight: lighter;
+}
+
+.em, .pw {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    font-family: "Chewy", system-ui;
+    font-size: small;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-width 0.2s ease, transform 0.2s ease;
+}
+
+.em:hover, .pw:hover {
+    border-width: 3px;
+}
+
+
+.em:active, .pw:active {
+    border-width: 2px;
+}
+
+.Submit {
+    text-align: center;
+    background-color: black;
+    color: rgb(222, 84, 203);
+    padding: 12px;
+    margin-top: 15px;
+    font-size: large;
+    font-family: "Cherry Bomb One", system-ui;
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: border-radius 0.2s, background-color 0.2s;
+}
+
+.Submit:hover {
+    border-radius: 4px;
+    background-color: #111111;
+}
+
+
+.Submit::after {
+    content: " "; 
+}
+
+.Submit:hover::after {
+    content: " »";
+}
+
+.Signup {
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign {
+    text-align: center;
+    font-size: smaller;
+    font-family: "Chewy", system-ui;
+}
+
+.sp a, .rp {
+    color: inherit;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+
+.sp:hover a, .rp:hover {
+    text-decoration: underline;
+}
+
+.sp:hover::after, .rp:hover::after {
+    content: " →";
+}
+
+.line {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+}
+
+.reset {
+
+    margin-top: 5px;
+
+}
+
+
+
+.rp {
+
+     text-align: center;
+
+    font-size: smaller;
+
+    font-family: "Cherry Bomb One", system-ui;
+
+    transition: text-decoration 0.2s;
+
+}
+
+
+
+.rp:hover {
+
+    text-decoration: underline;
+
+}
+
+
+
+.rp::after {
+
+    content: "";
+
+}
+
+
+
+.rp:hover::after {
+
+    content: " →";
+
+}
+
+.logo {
+    width: 300px;
+    display: flex;
+    justify-content: right;
+    position: relative;
+    
+}
+
+.pic {
+    display: flex;
+    vertical-align: top;
+    justify-content: right;
+    position: absolute;
+    top: 25px;      
+    right: 900px;
+    width: 300px;
+    height: auto
+}
+
+.ft {
+    position: absolute;
+    top: 483px;
+    right: 500px;
+    background: linear-gradient(to right, rgb(224, 111, 211), rgba(255, 255, 255, 0));
+    padding-left: 20px;
+    padding-bottom: 10px;
+    padding-right: 50px;
+    padding-top: 10px;
+}
+
+.greet {
+    font-weight: bold;
+    text-align: left;
+    font-size: 20px;
+    font-family: "Cherry Bomb One", system-ui;
+}
+
+.intro {
+    font-size: smaller;
+    font-family: "Chewy", system-ui; 
+    font-weight: lighter;
+}
+
+.foot {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.alya {
+    display: flex;
+    vertical-align: top;
+    justify-content: right;
+    position: absolute;
+    top: 314px;      
+    right: 950px;
+    width: 300px;
+    height: auto
+}
