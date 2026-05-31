@@ -152,12 +152,9 @@
 
 .rp {
 
-     text-align: center;
-
+    text-align: center;
     font-size: smaller;
-
     font-family: "Cherry Bomb One", system-ui;
-
     transition: text-decoration 0.2s;
 
 }
@@ -183,7 +180,6 @@
 .rp:hover::after {
 
     content: " →";
-
 }
 
 .logo {
@@ -244,3 +240,4 @@
     width: 300px;
     height: auto
 }
+

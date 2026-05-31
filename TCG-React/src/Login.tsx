@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import "./login.css";
+import { Link } from "react-router-dom";
 import img1 from "./assets/img1.jpeg";
 import img2 from "./assets/img2.jpg";
 import img4 from "./assets/img4.png";
@@ -35,11 +37,26 @@ function Login() {
 
   const displayImg = imgArr[currentImgIndex];
   const color = colorArr[currentImgIndex];
+
+  const pageVariants = {
+    initial: { x: '100%', opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: '100%', opacity: 0 },
+  };
+
+  const pageTransition = {
+    duration: 0.15,
+  };
     
   return (
     
-    <div 
-      className="Login" 
+    <motion.div
+      className="Login"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+      transition={pageTransition}
       style={{ backgroundImage: `url(${displayImg})`, 
         backgroundSize: '90%',
         backgroundPosition: 'center',
@@ -80,7 +97,7 @@ function Login() {
 
           <div className="Signup">
             <p className="sign">
-              Don't have an account yet? <span className="sp"><a href="#">Sign up here!</a></span>
+              Don't have an account yet? <span className="sp"><Link to="/signup">Sign Up Here</Link></span>
             </p>
           </div>
         </form>
@@ -101,7 +118,7 @@ function Login() {
         </p>
       </footer>
     </div>
-    </div>
+    </motion.div>
   );
 }
 
