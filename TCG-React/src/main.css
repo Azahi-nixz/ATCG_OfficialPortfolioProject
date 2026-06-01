@@ -17,11 +17,33 @@
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
 }
-
-.logo {
-    display: none;
+.pf {
+    width: 50px;
+    position: absolute;
+    top: 25px;
+    left: 150px;
+    border-radius: 50%;
+    display: flex;
 }
 
+.username {
+    font-family: "Chewy", system-ui;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 1px;
+    display: flex;
+    position: absolute;
+    top: 80px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 0px;
+}
 .nav-btn {
     display: block;
     margin: 0px;
