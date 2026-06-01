@@ -85,9 +85,7 @@ function Login() {
             <input type="password" id="password" className="pw" placeholder="Password" />
           </div>
           
-          <button type="submit" className="Submit">
-            Submit
-          </button>
+          <Link to="/main" className="Submit">Submit</Link>
 
           <div className="reset">
             <a href="#" className="rp">Forgot password? Click here!</a>

@@ -80,7 +80,11 @@
 }
 
 .Submit {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    text-decoration: none;
     background-color: black;
     color: rgb(222, 84, 203);
     padding: 12px;

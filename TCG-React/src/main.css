@@ -1,0 +1,74 @@
+.navbar {
+    position: fixed;
+    width: 350px;
+    height: 100%;
+    display: inline-block;
+    background: linear-gradient(
+    to bottom right, 
+    rgba(124, 58, 237),
+    rgba(222, 84, 203) 
+    );    
+    border-radius: 0px 20px 20px 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-top: none;
+    border-bottom: none;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo {
+    display: none;
+}
+
+.nav-btn {
+    display: block;
+    margin: 0px;
+    width: 100%;
+    background-color: rgb(222, 84, 203);
+    border: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #000000;
+    font-size: 18px;
+    text-align: middle;
+    cursor: pointer;
+    font-family: "Cherry Bomb One", system-ui;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn:hover {
+    background-color: rgb(196, 92, 170);
+}
+
+.log-out {
+    display: inline-flex;
+    margin: 0px;
+    width: 100%;
+    background-color: rgb(93, 8, 8);
+    border: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    font-size: 18px;
+    text-align: middle;
+    cursor: pointer;
+    font-family: "Cherry Bomb One", system-ui;
+    justify-content: center;
+}
+
+.log-out:hover {
+    background-color: rgb(232, 55, 55);
+}
+
+.navbar.is-open {
+    transform: translateX(0);
+}
+
+.navbar.is-hidden {
+    .navbar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+}
