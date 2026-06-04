@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
 import pfp from "./assets/pfp.jpg"
+import img1 from "./assets/img1.jpeg";
 
 
 
@@ -12,11 +13,45 @@ function MainPage() {
     setIsOpen(!isOpen);
   };
 
+  const [activeButton, setActiveButton] = useState("home");
+
+
     return (
         <>
         <div className="main-page"> 
             <button className="menu" onClick={toggleSidebar}>
                 ☰
+            </button>
+        </div>
+
+        <div className={`home-page${activeButton === "home" ? ' is-active' : ' is-close'}`}>
+            <p className="placeholder">This page is currently under construction.</p>
+        </div>
+
+        <div className={`character-page${activeButton === "character" ? ' is-active' : ' is-close'}`}>
+            <p className="placeholder">This page is currently under construction.</p>
+        </div>
+
+        <div className={`wish-page${activeButton === "wish" ? ' is-active' : ' is-close'}`}>
+            <p className="placeholder">This page is currently under construction.</p>
+        </div>
+
+        <div className={`battle-page${activeButton === "battle" ? ' is-active' : ' is-close'}`}>
+            <p className="placeholder">This page is currently under construction.</p>
+        </div>
+
+        <div className="topbar">
+            <button className={`top-btn ${activeButton === "home" ? "active" : ""}`} onClick={() => setActiveButton("home")}>
+                Home
+            </button>
+            <button className={`top-btn ${activeButton === "character" ? "active" : ""}`} onClick={() => setActiveButton("character")}>
+                Characters
+            </button>
+            <button className={`top-btn ${activeButton === "wish" ? "active" : ""}`} onClick={() => setActiveButton("wish")}>
+                Wishlists
+            </button>
+            <button className={`top-btn ${activeButton === "battle" ? "active" : ""}`} onClick={() => setActiveButton("battle")}>
+                Battle!
             </button>
         </div>
 
