@@ -14,6 +14,8 @@ function App(){
         <Route path="/signup" element={<Signup />} />
         <Route path="/main" element={<MainPage />} />
       </Routes>
+
+      
     </AnimatePresence>
   );
 }

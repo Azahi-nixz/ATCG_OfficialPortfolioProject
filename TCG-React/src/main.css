@@ -183,7 +183,7 @@
 }
 
 .home-page.is-close, .character-page.is-close, .wish-page.is-close, .battle-page.is-close {
-    transform: translateX(120%);
+    transform: translateX(-100%);
 }
 
 .placeholder {

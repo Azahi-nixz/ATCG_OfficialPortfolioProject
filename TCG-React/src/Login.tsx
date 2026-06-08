@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img1 from "./assets/img1.jpeg";
 import img2 from "./assets/img2.jpg";
 import img4 from "./assets/img4.png";
 import img5 from "./assets/img5.jpg";
 import logo from "./assets/logo.png";
-import alya from "./assets/alya.png"
-
-
+import alya from "./assets/alya.png";
 
 function Login() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = "Log-in";
   }, []);
 
-  const imgArr = [img1, img2, img4, img5];
-  const colorArr = ["pink" , "red" , "cyan" , "brown"]
 
+  const imgArr = [img1, img2, img4, img5];
+  const colorArr = ["pink", "red", "cyan", "brown"];
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
   useEffect(() => {
@@ -47,9 +47,50 @@ function Login() {
   const pageTransition = {
     duration: 0.15,
   };
-    
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleLoginSubmit = async (e: any) => {
+    e.preventDefault(); 
+    setLoading(true);
+    setError(null);
+
+    try {
+      const loginPayload = { email, password };
+
+      const response = await fetch('http://localhost:3000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginPayload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+       
+        throw new Error(data.message || `Error status: ${response.status}`);
+      }
+
+      console.log("Login successful! User data:", data.user);
+      
+      
+      localStorage.setItem('currentUser', JSON.stringify(data.user));
+
+      navigate("/main");
+
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    
     <motion.div
       className="Login"
       initial="initial"
@@ -57,35 +98,58 @@ function Login() {
       exit="exit"
       variants={pageVariants}
       transition={pageTransition}
-      style={{ backgroundImage: `url(${displayImg})`, 
+      style={{
+        backgroundImage: `url(${displayImg})`,
         backgroundSize: '90%',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
-        backgroundColor: color}}
-    > 
-    <div className="pic">
-      <img src={logo} alt="Logo" className="logo"/>
-    </div>
-    
+        backgroundColor: color
+      }}
+    >
+      <div className="pic">
+        <img src={logo} alt="Logo" className="logo" />
+      </div>
+
       <div className="box">
-        <form onSubmit={(e) => e.preventDefault()}>
-          <h1 className="Log-in">
-            ♡ Log-in ♡
-          </h1>
+    
+        <form onSubmit={handleLoginSubmit}>
+          <h1 className="Log-in">♡ Log-in ♡</h1>
           <hr className="line" />
-          
+
+        
+          {error && <p className="error-msg" style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+
           <div className="Email">
             <label htmlFor="email" className="email">Email</label>
-            <input type="email" id="email" className="em" placeholder="E-mail" />
+            <input
+              type="email"
+              id="email"
+              className="em"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} 
+              required
+            />
           </div>
-          
+
           <div className="Password">
             <label htmlFor="password" className="password">Password</label>
-            <input type="password" id="password" className="pw" placeholder="Password" />
+            <input
+              type="password"
+              id="password"
+              className="pw"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
+              required
+            />
           </div>
+
           
-          <Link to="/main" className="Submit">Submit</Link>
+          <button type="submit" className="Submit" disabled={loading}>
+            {loading ? "Connecting..." : "Submit"}
+          </button>
 
           <div className="reset">
             <a href="#" className="rp">Forgot password? Click here!</a>
@@ -101,21 +165,21 @@ function Login() {
         </form>
       </div>
 
-       <div className="alya">
-      <img src={alya} alt="Logo" className="logo"/>
+      <div className="alya">
+        <img src={alya} alt="Logo" className="logo" />
       </div>
 
-
-    <div className="ft">
-      <footer className="footer">
-        <h1 className="greet">Welcome to ATCG!</h1>
-        <hr className="foot"></hr>
-        <p className="intro"> This website will collect some information including but not limited to your cookies.
-          By logging in or signing-up, you acknowledge and entrust your personal information to the developer of ATCG.
-          Thanks for playing!
-        </p>
-      </footer>
-    </div>
+      <div className="ft">
+        <footer className="footer">
+          <h1 className="greet">Welcome to ATCG!</h1>
+          <hr className="foot"></hr>
+          <p className="intro">
+            This website will collect some information including but not limited to your cookies.
+            By logging in or signing-up, you acknowledge and entrust your personal information to the developer of ATCG.
+            Thanks for playing!
+          </p>
+        </footer>
+      </div>
     </motion.div>
   );
 }
