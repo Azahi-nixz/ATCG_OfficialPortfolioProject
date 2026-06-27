@@ -57,7 +57,7 @@ app.post('/api/login', async (req, res) => {
 
     const user = result.rows[0];
 
-    if (user.password === password) {
+    if (user.pass === password) {
   
       res.status(200).json({ 
         message: "Login successful", 
@@ -65,7 +65,7 @@ app.post('/api/login', async (req, res) => {
       });
     } else {
       
-      res.status(401).json({ message: "Invalid email or password" });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
   } catch (err) {
@@ -74,3 +74,29 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+
+app.post('/api/signup', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+
+    if (!email.includes("@gmail.com")) {
+      return res.status(400).json({ message: "Invalid email. Must be a Gmail address." });
+    }
+
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    const users = result.rows;
+
+    if (users.length > 0) {
+      return res.status(400).json({ message: "Account already exists." });
+    }
+
+    await pool.query('INSERT INTO users (email, pass) VALUES ($1, $2)', [email, password]);
+    
+    return res.status(200).json({ message: "Account successfully registered!" });
+
+  } catch (err) {
+    console.error("Database error during signup:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});

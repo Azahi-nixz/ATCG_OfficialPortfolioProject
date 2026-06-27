@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img1 from "./assets/img1.jpeg";
 import img2 from "./assets/img2.jpg";
 import img4 from "./assets/img4.png";
@@ -10,6 +10,7 @@ import logo from "./assets/logo.png";
 import alya from "./assets/alya.png";
 
 function Signup() {
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = "Sign-up";
   }, []);
@@ -46,6 +47,49 @@ function Signup() {
     duration: 0.15,
   };
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSignupSubmit = async (e: any) => {
+    e.preventDefault(); 
+    setLoading(true);
+    setError(null);
+
+    try {
+
+    const response = await fetch('http://localhost:3000/api/signup', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data =  await response.json();
+  
+
+    if(!response.ok) {
+      throw new Error(data.message || `Error status: ${response.status}`);
+    }
+
+    console.log("Login successful! User data:", data.user);
+      
+      
+      localStorage.setItem('currentUser', JSON.stringify(data.user));
+
+      navigate('/');
+      alert("Account successfully registered! Please log in.");
+
+  }
+
+  catch (err : any) {
+    setError(err.message);
+  }
+  finally {
+    setLoading(false)
+  }
+}
+
   return (
     <motion.div
       className="signup-page"
@@ -70,22 +114,25 @@ function Signup() {
 
       
       <div className="form-box">
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleSignupSubmit}>
           <h1 className="form-title">♡ Sign-up ♡</h1>
           <hr className="divider-line" />
 
+          {error && <p className="error-msg" style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+
+
           <div className="input-group">
             <label htmlFor="email" className="field-label">Email</label>
-            <input type="email" id="email" className="field-input" placeholder="E-mail" />
+            <input type="email" id="email" className="field-input" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
 
           <div className="input-group">
             <label htmlFor="password" className="field-label">Password</label>
-            <input type="password" id="password" className="field-input" placeholder="Password" />
+            <input type="password" id="password" className="field-input" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
 
-          <button type="submit" className="submit-button">
-            Submit
+          <button type="submit" className="submit-button" disabled={loading}>
+            {loading ? 'Verifying.....' : "Submit"}
           </button>
 
          
@@ -114,7 +161,7 @@ function Signup() {
         <img src={alya} alt="Character" className="logo-img" />
       </div>
 
-      {/* Info Banner Footer */}
+
       <div className="footer-container">
         <footer className="footer-content">
           <h1 className="footer-heading">Welcome to ATCG!</h1>
